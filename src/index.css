@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #fff0f5 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #8b0000;
+}
+
+:root {
+  --pink-main: #ff69b4;
+  --red-main: #dc143c;
+  --dark-red: #8b0000;
+  --light-pink: #ffb6c1;
+  --bg-pink: #fff0f5;
+  --bg-misty: #ffe4e1;
+  --white: #ffffff;
+  --font-cursive: 'Dancing Script', cursive;
+  --font-body: 'Poppins', sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
