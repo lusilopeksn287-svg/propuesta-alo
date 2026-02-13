@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="body" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#7BC8F6"/>
+      <stop offset="100%" style="stop-color:#4A9FD9"/>
+    </radialGradient>
+  </defs>
+  <!-- Body -->
+  <ellipse cx="100" cy="120" rx="55" ry="60" fill="url(#body)"/>
+  <!-- Head -->
+  <circle cx="100" cy="75" r="45" fill="url(#body)"/>
+  <!-- Left ear -->
+  <ellipse cx="55" cy="25" rx="18" ry="35" fill="url(#body)" transform="rotate(-15 55 25)"/>
+  <ellipse cx="55" cy="25" rx="12" ry="28" fill="#5BB8E8" transform="rotate(-15 55 25)"/>
+  <ellipse cx="55" cy="20" rx="8" ry="20" fill="#B8E0F7" transform="rotate(-15 55 25)"/>
+  <!-- Right ear -->
+  <ellipse cx="145" cy="25" rx="18" ry="35" fill="url(#body)" transform="rotate(15 145 25)"/>
+  <ellipse cx="145" cy="25" rx="12" ry="28" fill="#5BB8E8" transform="rotate(15 145 25)"/>
+  <ellipse cx="145" cy="20" rx="8" ry="20" fill="#B8E0F7" transform="rotate(15 145 25)"/>
+  <!-- Eyes -->
+  <ellipse cx="82" cy="70" rx="14" ry="16" fill="white"/>
+  <ellipse cx="118" cy="70" rx="14" ry="16" fill="white"/>
+  <circle cx="86" cy="72" r="7" fill="#1a1a2e"/>
+  <circle cx="114" cy="72" r="7" fill="#1a1a2e"/>
+  <circle cx="88" cy="69" r="2.5" fill="white"/>
+  <circle cx="116" cy="69" r="2.5" fill="white"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="82" rx="8" ry="5" fill="#3A7FBF"/>
+  <ellipse cx="100" cy="81" rx="4" ry="2" fill="#6ABBE8" opacity="0.5"/>
+  <!-- Mouth -->
+  <path d="M 82 90 Q 100 105 118 90" stroke="#2D6A9F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Belly -->
+  <ellipse cx="100" cy="135" rx="30" ry="25" fill="#B8E0F7" opacity="0.7"/>
+  <!-- Arms -->
+  <ellipse cx="50" cy="115" rx="12" ry="20" fill="url(#body)" transform="rotate(25 50 115)"/>
+  <ellipse cx="150" cy="115" rx="12" ry="20" fill="url(#body)" transform="rotate(-25 150 115)"/>
+  <!-- Legs -->
+  <ellipse cx="78" cy="170" rx="18" ry="12" fill="url(#body)"/>
+  <ellipse cx="122" cy="170" rx="18" ry="12" fill="url(#body)"/>
+</svg>
