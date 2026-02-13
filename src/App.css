@@ -2,6 +2,7 @@
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='18' font-size='18'>%F0%9F%A4%8D</text></svg>") 12 12, auto;
 }
 
 /* ========== HEARTS BACKGROUND ========== */
@@ -75,11 +76,30 @@
 .intro-title {
   font-family: var(--font-cursive);
   font-size: 3.5rem;
-  color: var(--red-main);
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    var(--red-main) 0%,
+    #e91e63 20%,
+    #f8bbd0 40%,
+    #ffd700 50%,
+    #f8bbd0 60%,
+    #e91e63 80%,
+    var(--red-main) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
   opacity: 0;
-  animation: fadeInUp 1.5s ease-out 0.5s forwards;
-  text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.15);
+  animation: fadeInUp 1.5s ease-out 0.5s forwards, titleShimmer 3s ease-in-out infinite 2s;
+  filter: drop-shadow(2px 2px 4px rgba(220, 20, 60, 0.15));
+}
+
+@keyframes titleShimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
 }
 
 .intro-subtitle {
@@ -95,9 +115,11 @@
 .intro-typing {
   font-family: var(--font-cursive);
   font-size: 1.8rem;
+  font-weight: 400;
   color: var(--dark-red);
   margin-bottom: 2.5rem;
   min-height: 2.5rem;
+  line-height: 1.4;
 }
 
 .typing-cursor {
@@ -248,10 +270,12 @@
 .reasons-title {
   font-family: var(--font-cursive);
   font-size: 2.8rem;
+  font-weight: 700;
   color: var(--red-main);
   margin-bottom: 2rem;
   text-align: center;
-  text-shadow: 1px 1px 3px rgba(220, 20, 60, 0.15);
+  text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.15);
+  line-height: 1.3;
 }
 
 /* Reasons intro (title screen before slides) */
@@ -305,10 +329,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
-  max-width: 550px;
+  gap: 1.5rem;
+  max-width: 700px;
   width: 100%;
-  animation: fadeInUp 0.6s ease-out;
+  animation: slideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 
 .slide-counter {
@@ -332,13 +367,31 @@
 
 .slide-img-wrapper {
   flex: 1;
-  max-width: 280px;
-  min-width: 140px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(220, 20, 60, 0.15);
-  border: 3px solid rgba(255, 182, 193, 0.4);
+  max-width: 360px;
+  min-width: 160px;
+  background: white;
+  padding: 8px 8px 32px 8px;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
   aspect-ratio: 3 / 4;
+  transition: transform 0.4s ease;
+}
+
+.slide-img-wrapper:nth-child(1) {
+  transform: rotate(-2deg);
+}
+
+.slide-img-wrapper:nth-child(2) {
+  transform: rotate(1.5deg);
+}
+
+.slide-img-wrapper:nth-child(3) {
+  transform: rotate(-1deg);
+}
+
+.slide-img-wrapper:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
 }
 
 .slide-img {
@@ -346,11 +399,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
+  border-radius: 2px;
 }
 
 .slide-img-wrapper:hover .slide-img {
-  transform: scale(1.05);
+  /* hover handled on wrapper */
 }
 
 /* Extra image (e.g. Stitch) */
@@ -370,6 +423,7 @@
 .slide-text {
   font-family: var(--font-cursive);
   font-size: 1.5rem;
+  font-weight: 700;
   color: var(--dark-red);
   text-align: center;
   line-height: 1.5;
@@ -401,6 +455,7 @@
 .question-text {
   font-family: var(--font-cursive);
   font-size: 3rem;
+  font-weight: 700;
   color: var(--red-main);
   text-align: center;
   margin-bottom: 2rem;
@@ -413,12 +468,39 @@
 /* Taunt message */
 .taunt-message {
   font-family: var(--font-cursive);
-  font-size: 2rem;
+  font-size: 3.2rem;
+  font-weight: 700;
   color: var(--red-main);
   text-align: center;
   animation: tauntBounce 0.6s ease-out;
-  text-shadow: 1px 1px 3px rgba(220, 20, 60, 0.2);
-  padding: 0 1rem;
+  text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.15);
+  padding: 0 1.5rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.4;
+}
+
+.taunt-continue {
+  border: none;
+  background: linear-gradient(135deg, var(--red-main), #e91e63);
+  color: white;
+  padding: 0.9rem 2.5rem;
+  font-size: 1.2rem;
+  font-family: var(--font-cursive);
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.3);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 1s forwards;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.taunt-continue:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(220, 20, 60, 0.45);
+}
+
+.taunt-continue:active {
+  transform: scale(0.97);
 }
 
 @keyframes tauntBounce {
@@ -427,15 +509,17 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Area for escaping button */
+/* Area for escaping button - covers full viewport */
 .question-area {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .btn-escape {
@@ -448,12 +532,15 @@
   cursor: pointer;
   user-select: none;
   position: absolute;
-  transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   white-space: nowrap;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out 0.8s forwards;
+  pointer-events: auto;
+  z-index: 11;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* Idle wiggle - the button looks nervous/alive */
@@ -538,8 +625,10 @@
 .progress-instruction {
   font-family: var(--font-cursive);
   font-size: 1.4rem;
+  font-weight: 700;
   color: var(--dark-red);
   text-align: center;
+  line-height: 1.4;
 }
 
 .btn-yes-click {
@@ -650,11 +739,13 @@
 .qc-title {
   font-family: var(--font-cursive);
   font-size: 3rem;
+  font-weight: 700;
   color: var(--red-main);
   margin-bottom: 1rem;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.3s forwards;
   text-shadow: 2px 2px 8px rgba(220, 20, 60, 0.2);
+  line-height: 1.3;
 }
 
 .qc-message {
@@ -662,7 +753,7 @@
   font-size: 1.1rem;
   color: var(--dark-red);
   max-width: 480px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.8s forwards;
@@ -672,6 +763,7 @@
 .qc-date {
   font-family: var(--font-cursive);
   font-size: 1.5rem;
+  font-weight: 700;
   color: var(--pink-main);
   margin-top: 2rem;
   opacity: 0;
@@ -704,6 +796,7 @@
 .lyrics-now-playing {
   font-family: var(--font-cursive);
   font-size: 1.5rem;
+  font-weight: 700;
   color: var(--pink-main);
   margin-bottom: 1rem;
   text-align: center;
@@ -782,39 +875,123 @@
   text-shadow: 0 0 12px rgba(220, 20, 60, 0.2);
 }
 
+/* ========== ROSE PETALS ========== */
+.petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -40px;
+  opacity: 0;
+  animation: petalFall linear infinite;
+  font-size: 1.2rem;
+  filter: drop-shadow(0 2px 4px rgba(220, 20, 60, 0.15));
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) translateX(80px);
+    opacity: 0;
+  }
+}
+
+/* ========== SPARKLE TRAIL ========== */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: sparkleFade 0.8s ease-out forwards;
+  font-size: 0.7rem;
+}
+
+@keyframes sparkleFade {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translateY(-20px);
+  }
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   .intro-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
   .intro-typing {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+
+  .intro-btn {
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
   }
 
   .reasons-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .slide-text {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1.05rem;
   }
 
   .slide-img-wrapper {
-    max-width: 220px;
-    min-width: 110px;
+    max-width: 300px;
+    min-width: 130px;
+    padding: 6px 6px 24px 6px;
   }
 
   .question-text {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 
   .taunt-message {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+  }
+
+  .taunt-continue {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btn-escape {
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btn-escape-yes {
+    font-size: 1.2rem;
   }
 
   .qc-title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
+  }
+
+  .qc-message {
+    font-size: 1.05rem;
+    padding: 0 1rem;
   }
 
   .btn-yes-click {
@@ -822,8 +999,8 @@
     font-size: 1.3rem;
   }
 
-  .question-area {
-    height: 250px;
+  .progress-instruction {
+    font-size: 1.2rem;
   }
 
   .lyric-en {
@@ -841,24 +1018,46 @@
   .lyrics-inline {
     height: 45vh;
   }
+
+  .lyrics-now-playing {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 480px) {
   .intro-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .intro-typing {
+    font-size: 1.2rem;
+  }
+
+  .intro-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+
+  .intro-subtitle {
+    font-size: 1rem;
   }
 
   .reasons-title {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
   }
 
   .slide-text {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
+  }
+
+  .slide-subtitle {
+    font-size: 0.95rem;
   }
 
   .slide-img-wrapper {
-    max-width: 180px;
-    min-width: 90px;
+    max-width: 260px;
+    min-width: 100px;
+    padding: 5px 5px 20px 5px;
   }
 
   .reasons-btn {
@@ -867,19 +1066,51 @@
   }
 
   .question-text {
-    font-size: 1.8rem;
-  }
-
-  .qc-title {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
 
   .taunt-message {
-    font-size: 1.2rem;
+    font-size: 2rem;
+  }
+
+  .taunt-continue {
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
+  }
+
+  .btn-escape {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
+
+  .btn-escape-yes {
+    font-size: 1.1rem;
+  }
+
+  .qc-title {
+    font-size: 1.9rem;
+  }
+
+  .qc-message {
+    font-size: 1rem;
+    padding: 0 0.8rem;
+  }
+
+  .qc-heart {
+    font-size: 4rem;
+  }
+
+  .qc-date {
+    font-size: 1.3rem;
   }
 
   .progress-instruction {
     font-size: 1.1rem;
+  }
+
+  .btn-yes-click {
+    padding: 0.9rem 2rem;
+    font-size: 1.2rem;
   }
 
   .lyric-en {
@@ -895,7 +1126,7 @@
   }
 
   .lyrics-now-playing {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .lyrics-inline {

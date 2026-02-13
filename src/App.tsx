@@ -1,6 +1,8 @@
 import { useState, useRef, useCallback } from 'react'
 import './App.css'
 import Hearts from './components/Hearts'
+import Petals from './components/Petals'
+import SparkleTrail from './components/SparkleTrail'
 import Intro from './components/Intro'
 import Reasons from './components/Reasons'
 import Question from './components/Question'
@@ -34,6 +36,8 @@ function App() {
     <div className="app">
       <audio ref={audioRef} src={`${base}audio/feel-it.mp3`} preload="auto" />
       <Hearts />
+      <Petals />
+      <SparkleTrail />
 
       {screen === 'intro' && (
         <Intro onContinue={handleIntro} />
